@@ -1,4 +1,4 @@
-const textarea = document.getElementById('textInput');
+const textInput = document.getElementById('textInput');
 const save = document.getElementById('save');
 const checkbox = document.getElementById('checkbox');
 
@@ -15,22 +15,31 @@ const deleteItem = (button) => {
   saveBlockedItems();
 };
 
-const addItem = (item = '') => {
+const addItem = async (item = '') => {
+  if (item === '') {
+    // Check if inputted site is already in list
+    const { blocked } = await chrome.storage.local.get(['blocked']);
+    if (Array.isArray(blocked)) {
+      const matchedSite = blocked.find((domain) =>
+        domain.includes(textInput.value.trim())
+      );
+      if (matchedSite) {
+        // Exits if already there
+        alert(`I think you have already blacklisted \"${matchedSite}\"`);
+        return;
+      }
+    }
+  }
+
   let blacklist = document.getElementById('item-list');
   let newItem = document.createElement('li');
   // Set the text content of the new <li> element
-  newItem.textContent =
-    item.length === 0
-      ? textarea.value
-          .split('\n')
-          .map((s) => s.trim())
-          .filter(Boolean)
-      : item;
+  newItem.textContent = item.length === 0 ? textInput.value.trim() : item;
   // Adds value to li element
   newItem.setAttribute('value', newItem.textContent);
   // Create a new "Delete" button for the new <li> element
   var deleteButton = document.createElement('button');
-  deleteButton.textContent = 'Delete';
+  deleteButton.innerHTML = '&#x2715';
   deleteButton.className = 'delete-button';
   deleteButton.onclick = function () {
     deleteItem(this);
@@ -45,9 +54,19 @@ const addItem = (item = '') => {
   }
 };
 
-save.addEventListener('click', () => {
-  addItem();
-  textarea.value = '';
+const addItemHandler = async () => {
+  await addItem();
+  textInput.value = '';
+};
+
+save.addEventListener('click', async () => {
+  await addItemHandler();
+});
+
+textInput.addEventListener('keydown', async (e) => {
+  if (e.key === 'Enter') {
+    await addItemHandler();
+  }
 });
 
 checkbox.addEventListener('change', (event) => {

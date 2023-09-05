@@ -11,7 +11,7 @@
 }
 
 .enabledContainer {
-    margin-top: 7.5em;
+    margin-top: 5em;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -61,11 +61,11 @@
 }
 
 input:checked+.slider {
-    background-color: #2196F3;
+    background-color: slateblue;
 }
 
 input:focus+.slider {
-    box-shadow: 0 0 1px #2196F3;
+    box-shadow: 0 0 1px slateblue;
 }
 
 input:checked+.slider:before {
@@ -100,9 +100,10 @@ li {
 .delete-button {
     background-color: #ff6666;
     color: #fff;
-    border: none;
+    border-radius: 5px;
     padding: 5px 10px;
     cursor: pointer;
+    font-size: smaller;
     margin-left: 10px;
 }
 
@@ -114,6 +115,7 @@ li {
 
 #save {
     margin-left: 5px;
+    cursor: pointer;
     padding: 10px;
     background-color: slateblue;
     color: #fff;
