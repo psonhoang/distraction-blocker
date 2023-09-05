@@ -92,8 +92,12 @@ ul {
 li {
     margin: 5px 0;
     padding: 5px;
-    /* border: 1px solid #ccc;
-    background-color: #f9f9f9; */
+    font-size: medium;
+}
+
+/* Style for favicon imgs */
+.faviconImg {
+    margin-right: 5px;
 }
 
 /* Style for delete buttons */
@@ -101,22 +105,32 @@ li {
     background-color: #ff6666;
     color: #fff;
     border-radius: 5px;
-    padding: 5px 10px;
+    padding: 4px 8px;
     cursor: pointer;
     font-size: smaller;
     margin-left: 10px;
 }
 
+.urlInput {
+    padding: 10px;
+    font-size: large;
+}
+
+#disabledInput {
+    width: 3em;
+    color: gray;
+}
+
 #textInput {
     width: 25em;
     margin-right: 5px;
-    padding: 10px;
 }
 
 #save {
     margin-left: 5px;
     cursor: pointer;
     padding: 10px;
+    font-size: large;
     background-color: slateblue;
     color: #fff;
 }

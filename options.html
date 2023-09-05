@@ -10,7 +10,8 @@
     <div class="container">
         <h1>Your Blacklist</h1>
         <div class="textInputContainer">
-            <input id="textInput" type="url" spellcheck="false"></textarea>
+            <input class="urlInput" id="disabledInput" disabled="true" value="https://"/>
+            <input class="urlInput" id="textInput" type="url" spellcheck="false"></textarea>
             <button id="save">Save</button>
         </div>
         <ul id="item-list"></ul>
@@ -23,6 +24,7 @@
         </div>
         
     </div>
+    <script src="scripts/validate.js"></script>
     <script src="scripts/options.js"></script>
 </body>
 
